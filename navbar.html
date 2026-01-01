@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DisCode Navbar</title>
+
+<style>
+:root{
+  --nav-bg:#0f1724;
+  --text:#eaf0ff;
+  --gray:#9ba4b3;
+  --accent:#9b2cff;
+  --accent2:#ff5fb0;
+  --radius:40px;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+body{
+  font-family:Inter,system-ui,Arial;
+  background:#fff;
+}
+
+/* Wrapper */
+.nav-wrap{
+  max-width:1200px;
+  margin:20px auto;
+  padding:0 15px;
+}
+
+/* Navbar */
+.navbar{
+  background:var(--nav-bg);
+  border-radius:var(--radius);
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  width:100%;
+}
+
+/* Logo */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+  font-size:20px;
+  color:var(--text);
+  text-decoration:none;
+}
+.logo-mark{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  width:34px;height:34px;
+  display:grid;place-items:center;
+  border-radius:9px;color:white;font-weight:bold;
+}
+
+/* Desktop Nav Links */
+.nav-links{
+  display:flex;gap:15px;
+}
+
+/* Flip Link */
+.nav-links a{
+  text-decoration:none;
+  display:inline-block;
+  position:relative;
+  perspective:600px;
+  width:80px;
+  height:25px;
+}
+.nav-links a .face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0;top:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:500;
+  backface-visibility:hidden;
+  transition:0.4s;
+}
+.front{color:var(--text);}
+.back{
+  transform:rotateX(90deg);
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:6px;
+  color:#fff;
+  text-shadow:0 0 10px var(--accent2);
+}
+.nav-links a:hover .front{transform:rotateX(-90deg);}
+.nav-links a:hover .back{transform:rotateX(0deg);}
+
+/* CTA Button */
+.cta-btn{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  padding:8px 14px;
+  color:#fff;font-weight:600;
+  text-decoration:none;
+  border-radius:50px;
+  display:flex;align-items:center;gap:6px;
+  font-size:14px;
+  transition:.25s;
+}
+.cta-btn:hover{
+  transform:scale(1.07);
+  box-shadow:0 0 12px var(--accent2);
+}
+
+/* Actions */
+.nav-actions{display:flex;align-items:center;gap:10px;}
+.hamburger{
+  display:none;
+  background:none;border:0;color:white;font-size:25px;
+}
+
+/* Mobile Background */
+.mobile-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+}
+
+/* Mobile Menu Drawer */
+.mobile-menu{
+  width:80%;
+  max-width:300px;
+  background:var(--nav-bg);
+  height:100vh;
+  padding:22px;
+  position:fixed;right:0;top:0;
+  transform:translateX(100%);
+  transition:.3s;
+}
+.mobile-menu.open{transform:translateX(0);}
+
+.mobile-links a{
+  display:block;
+  padding:12px 0;
+  font-size:17px;
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.mobile-links a:hover{
+  color:#fff;
+  text-shadow:0 0 10px var(--accent2);
+}
+.mobile-cta{margin-top:18px;display:block;}
+
+/* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
+
+/* Tablet to mobile */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+}
+
+/* Small Phones < 500px */
+@media(max-width:500px){
+  .logo{font-size:16px;}
+  .logo-mark{width:28px;height:28px;}
+  .cta-btn{
+    font-size:12px;
+    padding:6px 10px;
+  }
+}
+
+/* Extra Small Phones < 350px */
+@media(max-width:350px){
+  .navbar{padding:8px 10px;}
+  .cta-btn{display:none;} /* hide button on ultra small screens */
+}
+
+/* Ultra Mini Phones < 300px */
+@media(max-width:300px){
+  .logo{font-size:14px;gap:6px;}
+  .logo-mark{width:24px;height:24px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar Section -->
+<div class="nav-wrap">
+  <nav class="navbar">
+    <a class="logo" href="#"><span class="logo-mark">D</span>DisCode</a>
+
+    <div class="nav-links">
+      <a href="#"><span class="face front">Home</span><span class="face back">Home</span></a>
+      <a href="#"><span class="face front">About</span><span class="face back">About</span></a>
+      <a href="#"><span class="face front">Courses</span><span class="face back">Courses</span></a>
+      <a href="#"><span class="face front">Free</span><span class="face back">Free Class</span></a>
+      <a href="#"><span class="face front">Careers</span><span class="face back">Careers</span></a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="hamburger" id="menuBtn">&#9776;</button>
+      <a class="cta-btn" href="#">Free Consultation</a>
+    </div>
+  </nav>
+</div>
+
+<!-- Mobile overlay & menu -->
+<div class="mobile-bg" id="mobileBg"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="logo" style="margin-bottom:20px;">
+    <span class="logo-mark">D</span>DisCode
+  </a>
+  <div class="mobile-links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Courses</a>
+    <a href="#">Free live classes</a>
+    <a href="#">Careers</a>
+  </div>
+  <a class="cta-btn mobile-cta" href="#">Free Consultation</a>
+</div>
+
+
+<script>
+const btn=document.getElementById("menuBtn");
+const bg=document.getElementById("mobileBg");
+const menu=document.getElementById("mobileMenu");
+btn.onclick=()=>{ bg.style.display="block"; menu.classList.add("open"); };
+bg.onclick=()=>{ bg.style.display="none"; menu.classList.remove("open"); };
+</script>
+
+</body>
+</html>
